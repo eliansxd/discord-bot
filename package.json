@@ -7,6 +7,26 @@
   },
   "dependencies": {
     "discord.js": "^13.8.1",
-    "dotenv": "^16.0.1"
-  }
+    "dotenv": "^16.0.1",
+    "helper-package-create-discord-bot": "^1.3.13"
+  },
+  "name": "discord-bot",
+  "description": "Discord Bot XD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conghoangdev/discord-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/conghoangdev/discord-bot/issues"
+  },
+  "homepage": "https://github.com/conghoangdev/discord-bot#readme"
 }
