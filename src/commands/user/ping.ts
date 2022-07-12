@@ -1,5 +1,4 @@
-import { Message } from "discord.js";
-import { callbackFunc, ICommand } from "helper-package-create-discord-bot";
+import { ICommand } from "helper-package-create-discord-bot";
 import { TMetaData } from "../../types/MetaData";
 
 export default {
