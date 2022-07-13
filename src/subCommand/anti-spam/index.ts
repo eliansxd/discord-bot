@@ -15,7 +15,7 @@ const config: IIndexFile<TMetaData> = {
     defaultOption: {},
     optionForAllCommand: [],
     // aliases: ["cal"],
-    PrePossessForAllCommand(setBreakPossess, input, ...arg2) {
+    PrePossessForAllCommand(setBreakPossess, input) {
         const member = input.type == "message" ? input.message.member?.permissions : input.interaction.memberPermissions
         if (!member) {
             setBreakPossess(true)
