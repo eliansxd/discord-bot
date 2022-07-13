@@ -4,6 +4,7 @@ import path from "path";
 import { allIntents } from "./constants";
 import { Command } from "helper-package-create-discord-bot";
 import { TMetaData } from "./types/MetaData";
+import mongoose from "mongoose"
 dotenv.config({
   path: path.join(__dirname, "..", ".env"),
 });
@@ -25,7 +26,9 @@ const command = new Command<TMetaData>(client, {
 });
 
 client.on("ready", async(client) => {
-  await command.init()
+  await command.init();
+  if (!process.env.DB_URL) throw new Error("db url is null")
+  mongoose.connect(process.env.DB_URL)
   console.log(`login as ${client.user.username}`);
 });
 
