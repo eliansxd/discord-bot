@@ -4,7 +4,7 @@ import path from 'path';
 import { TMetaData } from '../../types/MetaData';
 
 const config: IIndexFile<TMetaData> = {
-    name: 'anti-spam',
+    name: "antiSpam".toLowerCase(),
     description: 'Disable or Enable anti spam',
     slash: true,
     message: true,
@@ -16,6 +16,7 @@ const config: IIndexFile<TMetaData> = {
     optionForAllCommand: [],
     // aliases: ["cal"],
     PrePossessForAllCommand(setBreakPossess, input) {
+        console.log("ok")
         const member = input.type == "message" ? input.message.member?.permissions : input.interaction.memberPermissions
         if (!member) {
             setBreakPossess(true)

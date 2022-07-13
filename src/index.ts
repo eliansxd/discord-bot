@@ -28,8 +28,6 @@ const command = new Command<TMetaData>(client, {
   BotPrefix: prefix,
 });
 
-// ông thêm BD_URL đi
-
 const subCommand = new SubCommand({
   client,
   SubCommandPath: path.join(__dirname, "./subCommand"),
@@ -41,16 +39,14 @@ const subCommand = new SubCommand({
   },
 });
 
-// import { connect } from "mongoose";
-
 client.on("ready", async (client) => {
   await command.init();
   await subCommand.init();
   if (!process.env.DB_URL) {
-    throw new Error("Don't Have Url Of DB_URL");
-  }
-  await mongoose.connect(process.env.DB_URL);
-  console.log(`\nLogin as ${client.user?.tag}`);
+    throw new Error("No URL database")
+  };
+  await mongoose.connect(process.env.DB_URL); console.log('\nConnected to db')
+  console.log(`Login as ${client.user?.tag}\n`);
   client.user.setPresence({
     activities: [
       {
