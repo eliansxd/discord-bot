@@ -5,7 +5,7 @@ import { modelOptions, getModelForClass, prop } from "@typegoose/typegoose";
     timestamps: true,
   },
 })
-export class AntiSpam {
+export class AntiSwear {
   @prop()
   createdAt: Date;
 
@@ -16,12 +16,6 @@ export class AntiSpam {
 
   @prop()
   isEnable: boolean;
-
-  @prop()
-  isEnableForAllChannel: boolean
-  
-  @prop()
-  enableChannel:string[]
 }
 
-export const AntiSpamModel = getModelForClass(AntiSpam);
+export const AntiSwearModel = getModelForClass(AntiSwear);

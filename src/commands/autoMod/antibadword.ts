@@ -1,13 +1,13 @@
-import { MessageEmbed, Constants } from "discord.js";
 import { ICommand } from "helper-package-create-discord-bot";
+import { Constants } from "discord.js";
 import { TMetaData } from "../../types/MetaData";
 
+
 export default {
-  name: "anti-spam".toLowerCase(),
-  description: "enable or disable anti spam",
-  category: "user",
-  aliases: [],
-  isSlash: true,
+  name: "anti-swear".toLowerCase(),
+  description: "Disable and Enable anti swear",
+  category: "Auto Mod",
+  // aliases: ["p"],
   options: [
     {
       name: "action",
@@ -16,21 +16,29 @@ export default {
       options: [
         {
           name: "on",
-          description: "turn on anti spam",
+          description: "turn on anti swear",
           type: Constants.ApplicationCommandOptionTypes.SUB_COMMAND
         },
         {
           name: "off",
-          description: "turn off anti spam",
+          description: "turn off anti swear",
           type: Constants.ApplicationCommandOptionTypes.SUB_COMMAND
         }
       ]
     }
   ],
-  callback: async ({ client: _ }) => {
+  isSlash: true,
+  callback: async ({client: _}) => {
+
+    // const embedSetting = new MessageEmbed()
+    //   .setDescription(`${AntiSwearModel.isEnable ? "" : ""}`)
+
+
+
+
     return {
-      embeds: [new MessageEmbed().setTitle("test embed")]
-    };
+      embeds: []
+    }
   },
 
 } as ICommand<TMetaData>;

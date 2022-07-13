@@ -5,6 +5,7 @@ import {
   Ref,
 } from "@typegoose/typegoose";
 import { AntiSpam } from "./antiSpam";
+import { AntiSwear } from "./antiswear";
 
 @modelOptions({
   schemaOptions: {
@@ -25,6 +26,9 @@ export class GuildSetting {
 
   @prop({ ref: () => AntiSpam })
   antiSpam: Ref<AntiSpam>;
+  
+  @prop({ ref: () => AntiSwear })
+  antiSwear: Ref<AntiSwear>;
 }
 
 export const GuildSettingModel = getModelForClass(GuildSetting);
