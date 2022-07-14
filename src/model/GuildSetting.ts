@@ -5,7 +5,7 @@ import {
   Ref,
 } from "@typegoose/typegoose";
 import { AntiSpam } from "./antiSpam";
-import { AntiSwear } from "./antiswear";
+import { AntiSwear } from "./antiSwear";
 
 @modelOptions({
   schemaOptions: {
@@ -13,8 +13,10 @@ import { AntiSwear } from "./antiswear";
   },
 })
 export class GuildSetting {
-  @prop()
-  guildID: string;
+  @prop({
+    required: true,
+  })
+  guildID!: string;
 
   @prop()
   createdAt: Date;
@@ -25,10 +27,10 @@ export class GuildSetting {
   _id: string;
 
   @prop({ ref: () => AntiSpam })
-  antiSpam: Ref<AntiSpam>;
-  
+  antiSpam?: Ref<AntiSpam>;
+
   @prop({ ref: () => AntiSwear })
-  antiSwear: Ref<AntiSwear>;
+  antiSwear?: Ref<AntiSwear>;
 }
 
 export const GuildSettingModel = getModelForClass(GuildSetting);

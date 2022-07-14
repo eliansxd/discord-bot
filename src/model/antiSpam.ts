@@ -15,13 +15,15 @@ export class AntiSpam {
   _id: string;
 
   @prop()
+  guildID: string;
+  @prop()
   isEnable: boolean;
 
   @prop()
-  isEnableForAllChannel: boolean
-  
+  isEnableForAllChannel: boolean;
+
   @prop()
-  enableChannel:string[]
+  enableChannel: string[];
 }
 
 export const AntiSpamModel = getModelForClass(AntiSpam);
