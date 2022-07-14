@@ -85,9 +85,4 @@ export const UpdateAntiSpamSetting = async (
       }
     );
   }
-  console.log(
-    await GuildSettingModel.findOne({
-      guildID: input.guildId,
-    })
-  );
 };
