@@ -2,8 +2,12 @@ import { Client } from "discord.js";
 import dotenv from "dotenv";
 import path from "path";
 import { allIntents } from "./constants";
-import { Command } from "helper-package-create-discord-bot";
+import { Command, SubCommand } from "helper-package-create-discord-bot";
 import { TMetaData } from "./types/MetaData";
+import mongoose from "mongoose";
+
+const prefix = "!";
+
 dotenv.config({
   path: path.join(__dirname, "..", ".env"),
 });
@@ -21,12 +25,36 @@ const command = new Command<TMetaData>(client, {
   LogForMessageAndInteraction: isDev,
   typescript: isDev,
   metaData: {},
-  BotPrefix: "!",
+  BotPrefix: prefix,
 });
 
-client.on("ready", async(client) => {
-  await command.init()
-  console.log(`login as ${client.user.username}`);
+const subCommand = new SubCommand({
+  client,
+  SubCommandPath: path.join(__dirname, "./subCommand"),
+  BotPrefix: prefix,
+  isDev,
+  LogForMessageAndInteraction: isDev,
+  metaData: {
+    command,
+  },
+});
+
+client.on("ready", async (client) => {
+  await command.init();
+  await subCommand.init();
+  if (!process.env.DB_URL) {
+    throw new Error("No URL database")
+  };
+  await mongoose.connect(process.env.DB_URL); console.log('\nConnected to db')
+  console.log(`Login as ${client.user?.tag}\n`);
+  client.user.setPresence({
+    activities: [
+      {
+        name: "Try / or " + prefix,
+        type: "PLAYING",
+      },
+    ],
+  });
 });
 
 client.login(process.env.TOKEN);
